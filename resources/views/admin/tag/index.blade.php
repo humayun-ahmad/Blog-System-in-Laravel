@@ -47,6 +47,7 @@
                                             <th>Name</th>
                                             <th>Created at</th>
                                             <th>Updated at</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -55,17 +56,31 @@
 	                                        <th>Name</th>
 	                                        <th>Created at</th>
 	                                        <th>Updated at</th>
+	                                        <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
 
                                     	@foreach($tags as $key=>$tag)
 
+                                    	<tr>
                                     	<td>{{ $key + 1 }}</td>
                                     	<td>{{ $tag->name }}</td>
                                     	<td>{{ $tag->created_at }}</td>
                                     	<td>{{ $tag->updated_at }}</td>
-
+                                    	<td>
+                                    		<a class="btn btn-info" href="{{ route('admin.tag.edit', $tag->id) }}">
+                                    			<i class="material-icons">edit</i>
+                                    		</a>
+                                    		<button class="btn btn-danger" type="button" onclick="deleteTag( {{ $tag->id }} )">
+                                    			<i class="material-icons">delete</i>
+                                    		</button>
+                                    		<form id="delete-form-{{ $tag->id }}" action="{{ route('admin.tag.destroy', $tag->id) }}" method="POST" style="display: none;" >
+                                    			@csrf
+                                    			@method('DELETE')
+                                    		</form>
+                                    	</td>
+                                    	</tr>
                                     	@endforeach
 
                                     </tbody>
@@ -92,4 +107,47 @@
     <script src="{{asset('assets/backend/plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
     <script src="{{asset('assets/backend/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
     <script src="{{asset('assets/backend/js/pages/tables/jquery-datatable.js')}}"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+
+    <script type="text/javascript">
+    	function deleteTag(id) {
+			  const swalWithBootstrapButtons = Swal.mixin({
+			  customClass: {
+			    confirmButton: 'btn btn-success',
+			    cancelButton: 'btn btn-danger'
+			  },
+			  buttonsStyling: false
+			})
+
+			swalWithBootstrapButtons.fire({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonText: 'Yes, delete it!',
+			  cancelButtonText: 'No, cancel!',
+			  reverseButtons: true
+			}).then((result) => {
+			  if (result.isConfirmed) {
+
+			  	// newly added part here
+			    event.preventDefault();
+			    document.getElementById('delete-form-'+ id).submit();
+			    
+			  } else if (
+			    /* Read more about handling dismissals below */
+			    result.dismiss === Swal.DismissReason.cancel
+			  ) {
+			    swalWithBootstrapButtons.fire(
+			      'Cancelled',
+			      'Your imaginary file is safe :)',
+			      'error'
+			    )
+			  }
+			})
+		}
+    </script>
 @endpush
