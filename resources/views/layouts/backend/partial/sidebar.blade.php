@@ -62,7 +62,6 @@
                         </li>
                     @endif
 
-
                     @if(Request::is('author*'))
                         <li class="{{ Request::is('author/dashboard') ? 'active' : '' }}">
                         <a href="{{ route('author.dashboard') }}">
@@ -70,6 +69,8 @@
                             <span>Dashboard</span>
                         </a>
                         </li>
+                        <li class="header">System</li>
+                        <li class="header">System</li>
                         <li class="header">System</li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -83,9 +84,6 @@
                             </form>
                         </li>
                     @endif
-
-                    
-             
                 </ul>
             </div>
             <!-- #Menu -->

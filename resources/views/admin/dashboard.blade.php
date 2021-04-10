@@ -319,8 +319,6 @@
                 <!-- #END# Browser Usage -->
             </div>
         </div>
-
-
 @endsection
 
 @push('js')

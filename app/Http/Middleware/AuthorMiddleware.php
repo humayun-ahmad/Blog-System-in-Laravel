@@ -19,7 +19,7 @@ class AuthorMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role->id == 2){
+        if(Auth::check() && Auth::user()->role->name == "Author"){
             return $next($request);
         } else {
             return redirect()->route('login');
