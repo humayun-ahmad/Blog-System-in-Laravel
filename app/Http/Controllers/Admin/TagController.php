@@ -60,8 +60,6 @@ class TagController extends Controller
         $tag->save();
         Toastr::success('Tag successfully save!', 'success');
         return redirect()->route('admin.tag.index');
-
-
     }
 
     /**
