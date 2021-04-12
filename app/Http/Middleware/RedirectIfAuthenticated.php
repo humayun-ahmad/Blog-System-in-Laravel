@@ -18,9 +18,9 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check() && Auth::user()->role->id == 1) {
+        if (Auth::guard($guard)->check() && Auth::user()->role->name == "Admin") {
             return redirect()->route('admin.dashboard');
-        } elseif(Auth::guard($guard)->check() && Auth::user()->role->id == 2) {
+        } elseif(Auth::guard($guard)->check() && Auth::user()->role->name == "Author") {
             return redirect()->route('author.dashboard');
         } else {
             return $next($request);

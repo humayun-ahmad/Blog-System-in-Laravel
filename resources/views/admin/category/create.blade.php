@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Tag Create')
+@section('title', 'Category Create')
 
 @push('css')
 
@@ -11,7 +11,7 @@
 
 <div class="container-fluid">
             <div class="block-header">
-                <h2>Tag</h2>
+                <h2>Category</h2>
             </div>
             <!-- Vertical Layout | With Floating Label -->
             <div class="row clearfix">
@@ -19,20 +19,23 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Add New
+                                Add New Category
                             </h2>
                             
                         </div>
                         <div class="body">
-                            <form action="{{ route('admin.tag.store') }}" method="POST">
+                            <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" id="name" class="form-control" name="name">
-                                        <label class="form-label">Tag Name</label>
+                                        <label class="form-label">Category Name</label>
                                     </div>
                                 </div>
-                                <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.tag.index') }}">BACK</a>
+                                <div class="form-group">
+                                    <input type="file" name="image" id="image">
+                                </div>
+                                <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.category.index') }}">BACK</a>
                                 <button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
                             </form>
                         </div>
