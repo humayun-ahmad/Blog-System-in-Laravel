@@ -11,7 +11,7 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
                             <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            
+
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -52,6 +52,13 @@
                         <a href="{{ route('admin.category.index') }}">
                             <i class="material-icons">apps</i>
                             <span>Category</span>
+                        </a>
+                        </li>
+
+                        <li class="{{ Request::is('admin/post*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.post.index') }}">
+                            <i class="material-icons">library_books</i>
+                            <span>Posts</span>
                         </a>
                         </li>
 

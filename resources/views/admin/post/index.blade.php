@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Tag')
+@section('title', 'Post - Admin')
 
 @push('css')
 <!-- JQuery DataTable Css -->
@@ -12,9 +12,9 @@
 
 <div class="container-fluid">
             <div class="block-header">
-                <a class="btn btn-primary waves-effect" href="{{ route('admin.tag.create') }}">
+                <a class="btn btn-primary waves-effect" href="{{ route('admin.post.create') }}">
                     <i class="material-icons">add</i>
-                Add New Tag</a>
+                Add New Post</a>
             </div>
 
             <!-- Exportable Table -->
@@ -23,8 +23,8 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                All Tag
-                                <span class="badge bg-blue">{{ $tags->count() }}</span>
+                                Post TABLE
+                                <span class="badge bg-blue">{{ $posts->count() }}</span>
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
@@ -45,8 +45,11 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Post Count</th>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>View Count</th>
+                                            <th>Is Approved</th>
+                                            <th>Status</th>
                                             <th>Created at</th>
                                             <th>Updated at</th>
                                             <th>Action</th>
@@ -55,8 +58,11 @@
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Post Count</th>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>View Count</th>
+                                            <th>Is Approved</th>
+                                            <th>Status</th>
                                             <th>Created at</th>
                                             <th>Updated at</th>
                                             <th>Action</th>
@@ -64,22 +70,37 @@
                                     </tfoot>
                                     <tbody>
 
-                                        @foreach($tags as $key=>$tag)
+                                        @foreach($posts as $key=>$post)
 
                                         <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $tag->name }}</td>
-                                        <td>{{ $tag->posts->count() }}</td>
-                                        <td>{{ $tag->created_at }}</td>
-                                        <td>{{ $tag->updated_at }}</td>
+                                        <td>{{ Str::limit($post->title, '10') }}</td>
+                                        <td>{{ $post->user->name }}</td>
+                                        <td>{{ $post->view_count }}</td>
                                         <td>
-                                            <a class="btn btn-info" href="{{ route('admin.tag.edit', $tag->id) }}">
+                                            @if($post->is_approved==1)
+                                                <span class="badge bg-blue">Approved</span>
+                                            @else
+                                                <span class="badge bg-pink">Pending</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($post->status == 1)
+                                                <span class="badge bg-blue">Approved</span>
+                                            @else
+                                                <span class="badge bg-pink">Pending</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $post->created_at }}</td>
+                                        <td>{{ $post->updated_at }}</td>
+                                        <td>
+                                            <a class="btn btn-info" href="{{ route('admin.post.edit', $post->id) }}">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <button class="btn btn-danger" type="button" onclick="deleteTag( {{ $tag->id }} )">
+                                            <button class="btn btn-danger" type="button" onclick="deletePost( {{ $post->id }} )">
                                                 <i class="material-icons">delete</i>
                                             </button>
-                                            <form id="delete-form-{{ $tag->id }}" action="{{ route('admin.tag.destroy', $tag->id) }}" method="POST" style="display: none;" >
+                                            <form id="delete-form-{{ $post->id }}" action="{{ route('admin.post.destroy', $post->id) }}" method="POST" style="display: none;" >
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -117,7 +138,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
 
     <script type="text/javascript">
-        function deleteTag(id) {
+        function deletePost(id) {
               const swalWithBootstrapButtons = Swal.mixin({
               customClass: {
                 confirmButton: 'btn btn-success',

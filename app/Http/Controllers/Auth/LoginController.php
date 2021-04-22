@@ -28,24 +28,42 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo;
+//    protected $redirectTo;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+
+    protected function redirectTo()
     {
         if(Auth::check() && Auth::user()->role->name == "Admin"){
-            $this->redirectTo = route('admin.dashboard');
+//          $this->redirectTo = route('admin.dashboard');
+            return 'admin/dashboard';
         }elseif((Auth::check() && Auth::user()->role->name == "Author")) {
-            $this->redirectTo = route('author.dashboard');
+//           $this->redirectTo = route('author.dashboard');
+            return 'author/dashboard';
         }else {
-            $this->middleware('guest')->except('logout');
+            return '/login';
         }
-
-
-        
     }
+
+
+
+//    public function __construct()
+//    {
+//        if(Auth::check() && Auth::user()->role->name == "Admin"){
+////            $this->redirectTo = route('admin.dashboard');
+//            return 'admin/dashboard';
+//        }elseif((Auth::check() && Auth::user()->role->name == "Author")) {
+////            $this->redirectTo = route('author.dashboard');
+//            return 'author/dashboard';
+//        }else {
+//            $this->middleware('guest')->except('logout');
+//        }
+
+
+
+//    }
 }
