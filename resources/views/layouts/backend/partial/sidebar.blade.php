@@ -98,6 +98,9 @@
                             </form>
                         </li>
                     @endif
+                    
+                    @if(Request::is(''))
+					@endif
                 </ul>
             </div>
             <!-- #Menu -->
