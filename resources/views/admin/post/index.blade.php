@@ -26,7 +26,7 @@
                                 Post TABLE
                                 <span class="badge bg-blue">{{ $posts->count() }}</span>
                             </h2>
-                            
+
                         </div>
                         <div class="body">
                             <div class="table-responsive">

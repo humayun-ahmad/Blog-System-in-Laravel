@@ -11,7 +11,7 @@
 
 <div class="container-fluid">
             <div class="block-header">
-                <h2>Category</h2>
+                <h2>Post</h2>
             </div>
             <!-- Vertical Layout | With Floating Label -->
             <div class="row clearfix">
@@ -21,7 +21,7 @@
                             <h2>
                                 Add New Category
                             </h2>
-                            
+
                         </div>
                         <div class="body">
                             <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
