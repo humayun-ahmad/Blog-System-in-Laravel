@@ -4,11 +4,11 @@
 
 @push('css')
     <!-- Bootstrap Select Css -->
-{{--    <link href="{{asset('assets/backend/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />--}}
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.3/css/bootstrap-select.min.css">
-    <!-- Multi Select Css -->
-    <link href="{{ asset('assets/backend/plugins/multi-select/css/multi-select.css')  }}" rel="stylesheet">
+    <link href="{{asset('assets/backend/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+
+{{--    <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.3/css/bootstrap-select.min.css">--}}
+{{--    <!-- Multi Select Css -->--}}
+{{--    <link href="{{ asset('assets/backend/plugins/multi-select/css/multi-select.css')  }}" rel="stylesheet">--}}
 @endpush
 
 
@@ -80,9 +80,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                    <div class="form-group">
-                                        <input type="file" name="image" id="image">
-                                    </div>
                                     <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.category.index') }}">BACK</a>
                                     <button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
 
@@ -95,25 +92,14 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Add New Category
+                            Body
                         </h2>
 
                     </div>
                     <div class="body">
-                       <textarea id="tinymce">
-                                <h2>WYSIWYG Editor</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper sapien non nisl facilisis bibendum in quis tellus. Duis in urna bibendum turpis pretium fringilla. Aenean neque velit, porta eget mattis ac, imperdiet quis nisi. Donec non dui et tortor vulputate luctus. Praesent consequat rhoncus velit, ut molestie arcu venenatis sodales.</p>
-                                <h3>Lacinia</h3>
-                                <ul>
-                                    <li>Suspendisse tincidunt urna ut velit ullamcorper fermentum.</li>
-                                    <li>Nullam mattis sodales lacus, in gravida sem auctor at.</li>
-                                    <li>Praesent non lacinia mi.</li>
-                                    <li>Mauris a ante neque.</li>
-                                    <li>Aenean ut magna lobortis nunc feugiat sagittis.</li>
-                                </ul>
-                                <h3>Pellentesque adipiscing</h3>
-                                <p>Maecenas quis ante ante. Nunc adipiscing rhoncus rutrum. Pellentesque adipiscing urna mi, ut tempus lacus ultrices ac. Pellentesque sodales, libero et mollis interdum, dui odio vestibulum dolor, eu pellentesque nisl nibh quis nunc. Sed porttitor leo adipiscing venenatis vehicula. Aenean quis viverra enim. Praesent porttitor ut ipsum id ornare.</p>
-                            </textarea>
+                       <textarea id="tinymce" name="body">
+
+                       </textarea>
                     </div>
                 </div>
             </div>
@@ -127,16 +113,35 @@
 
 @push('js')
 
-    <!-- Ckeditor -->
-    <script src="{{ asset('assets/backend/plugins/ckeditor/ckeditor.js')  }}"></script>
+
     <!-- TinyMCE -->
     <script src="{{ asset('assets/backend/plugins/tinymce/tinymce.js')  }}"></script>
-    <script src="{{ asset('assets/backend/js/pages/forms/editors.js')  }}"></script>
-
 
     <!-- Select Plugin Js -->
-{{--    <script src="{{asset('assets/backend/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.3/js/bootstrap-select.min.js"></script>
+    <script src="{{asset('assets/backend/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
+
+    <script>
+        $(function () {
+
+            //TinyMCE
+            tinymce.init({
+                selector: "textarea#tinymce",
+                theme: "modern",
+                height: 300,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                    'insertdatetime media nonbreaking save table contextmenu directionality',
+                    'emoticons template paste textcolor colorpicker textpattern imagetools'
+                ],
+                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                toolbar2: 'print preview media | forecolor backcolor emoticons',
+                image_advtab: true
+            });
+            tinymce.suffix = ".min";
+            tinyMCE.baseURL = '{{ asset('assets/backend/plugins/tinymce')  }}';
+        });
+    </script>
+
+
 @endpush
