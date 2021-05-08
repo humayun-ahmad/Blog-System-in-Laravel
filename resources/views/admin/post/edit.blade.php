@@ -34,7 +34,7 @@
                         <div class="body">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" id="title" class="form-control" name="title">
+                                    <input type="text" id="title" class="form-control" name="title" value="{{ $post->title  }}">
                                     <label class="form-label">Post Title</label>
                                 </div>
                             </div>
@@ -43,7 +43,9 @@
                                 <input type="file" name="image" id="image">
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" id="publish" name="status" class="filled-in" value="1">
+                                <input type="checkbox" id="publish" name="status" class="filled-in" value="1"
+                                    {{ $post->status == 1 ? 'checked' : '' }}
+                                >
                                 <label for="publish">publish</label>
                             </div>
 
@@ -65,7 +67,11 @@
                                     <label for="category">Category Name</label>
                                     <select name="categories[]" id="category" class="form-control show-tick" data-live-search="true" multiple>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id  }}">{{ $category->name  }}</option>
+                                            <option
+                                                @foreach($post->categories as $postCategory)
+                                                    {{ $category->id == $postCategory->id ? 'selected' : '' }}
+                                                @endforeach
+                                                value="{{ $category->id  }}">{{ $category->name  }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -75,7 +81,11 @@
                                     <label for="tag">Tag Name</label>
                                     <select name="tags[]" id="tag" class="form-control show-tick" data-live-search="true" multiple>
                                         @foreach($tags as $tag)
-                                            <option value="{{ $tag->id  }}">{{ $tag->name  }}</option>
+                                            <option
+                                                @foreach($post->tags as $postTag)
+                                                {{ $tag->id == $postTag->id ? 'selected' : '' }}
+                                                @endforeach
+                                                value="{{ $tag->id  }}">{{ $tag->name  }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -98,7 +108,7 @@
                         </div>
                         <div class="body">
                        <textarea id="tinymce" name="body">
-
+                            {{ $post->body  }}
                        </textarea>
                         </div>
                     </div>
