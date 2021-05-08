@@ -77,6 +77,7 @@ class CategoryController extends Controller
                 Storage::disk('public')->makeDirectory('category/slider');
             }
 
+
             // resise image for category and upload
 
             $slider = Image::make($image)->resize(500,333)->stream();

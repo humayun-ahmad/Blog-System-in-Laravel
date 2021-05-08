@@ -137,7 +137,62 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->validate($request, [
+            'title'=>'required',
+            'image' => 'image',
+            'categories' => 'required',
+            'tags' => 'required',
+            'body' => 'required',
+        ]);
+
+        $image = $request->file('image');
+        $slug = Str::slug($request->title);
+
+        if(isset($image)){
+//            make uniqe name for image
+
+            $currentDate = Carbon::now()->toDateString();
+            $imagename = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+//            check post directory exists or not
+
+            if(!Storage::disk('public')->exists('post')){
+                Storage::disk('public')->makeDirectory('post');
+            }
+
+            // Old image delete from storage
+
+            if(Storage::disk('public')->exists('post/'.$post->image)){
+                Storage::disk('public')->delete('post/'.$post->image);
+            }
+
+//            image resize for post
+            $postimage = Image::make($image)->resize(1600,479)->stream();
+            Storage::disk('public')->put('post/'.$imagename, $postimage);
+
+        }else{
+            $imagename = $post->image;
+        }
+        $post->user_id = Auth::id();
+        $post->title = $request->title;
+        $post->slug = $slug;
+        $post->image = $imagename;
+        $post->body = $request->body;
+
+        if(isset($request->status)){
+            $post->status = true;
+        }else{
+            $post->status = false;
+        }
+
+        $post->is_approved = true;
+
+        $post->save();
+        $post->categories()->sync($request->categories);
+        $post->tags()->sync($request->tags);
+
+        Toastr::success('Post updated sucessfully!', 'success');
+        return redirect()->route('admin.post.index');
     }
 
     /**

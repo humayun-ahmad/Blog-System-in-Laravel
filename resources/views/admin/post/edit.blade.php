@@ -20,14 +20,14 @@
         </div>
         <!-- Vertical Layout | With Floating Label -->
 
-        <form action="{{ route('admin.post.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row clearfix">
                 <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Add New Post
+                                Edit Post
                             </h2>
 
                         </div>
