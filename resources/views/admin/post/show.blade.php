@@ -20,8 +20,6 @@
             </div>
             <!-- Vertical Layout | With Floating Label -->
 
-            <form action="{{ route('admin.post.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
                 <div class="row clearfix">
                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
@@ -87,25 +85,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>
-                            Body
-                        </h2>
 
-                    </div>
-                    <div class="body">
-                       <textarea id="tinymce" name="body">
 
-                       </textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-            </form>
             <!-- Vertical Layout | With Floating Label -->
         </div>
 
