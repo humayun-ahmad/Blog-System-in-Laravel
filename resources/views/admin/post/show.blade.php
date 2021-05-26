@@ -31,57 +31,46 @@
 
                             </div>
                             <div class="body">
-                                    <div class="form-group form-float">
-                                        <div class="form-line">
-                                            <input type="text" id="title" class="form-control" name="title">
-                                            <label class="form-label">Post Title</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="image">Featured Image</label>
-                                        <input type="file" name="image" id="image">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="checkbox" id="publish" name="status" class="filled-in" value="1">
-                                        <label for="publish">publish</label>
-                                    </div>
-
+                                {{ $post->body }}
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
-                            <div class="header">
+                            <div class="header bg-cyan">
                                 <h2>
-                                    Categories and Tags
+                                    Categories
                                 </h2>
 
                             </div>
                             <div class="body">
+                                @foreach($post->categories as $category)
+                                    <span class="label bg-cyan">{{ $category->name }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="header bg-green">
+                                <h2>
+                                    Tags
+                                </h2>
 
-                                    <div class="form-group form-float">
-                                        <div class="form-line {{ $errors->has('categories') ? "focused error" : ''  }}">
-                                            <label for="category">Category Name</label>
-                                            <select name="categories[]" id="category" class="form-control show-tick" data-live-search="true" multiple>
-                                                @foreach($categories as $category)
-                                                    <option value="{{ $category->id  }}">{{ $category->name  }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line {{ $errors->has('tags') ? "focused error" : ''  }}">
-                                        <label for="tag">Tag Name</label>
-                                        <select name="tags[]" id="tag" class="form-control show-tick" data-live-search="true" multiple>
-                                            @foreach($tags as $tag)
-                                                <option value="{{ $tag->id  }}">{{ $tag->name  }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                    <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.category.index') }}">BACK</a>
-                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
+                            </div>
+                            <div class="body">
+                                @foreach($post->tags as $tag)
+                                    <span class="label bg-green">{{ $tag->name }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="header bg-amber">
+                                <h2>
+                                    Featured Image
+                                </h2>
 
+                            </div>
+                            <div class="body">
+                                <img class="img-responsive thumbnail" src="{{ Storage::disk('public')->url('post/'.$post->image) }}" alt="Post image">
                             </div>
                         </div>
                     </div>
