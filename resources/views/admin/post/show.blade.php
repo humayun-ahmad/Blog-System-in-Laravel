@@ -26,12 +26,12 @@
                             <div class="header">
                                 <h2>
                                     {{ $post->title  }}
-                                    <small>posted by <strong><a href="#">{{ $post->user->name }}</a></strong> on {{ $post->created_at->toFormattedDateString() }}</small>
+                                    <small>posted by <strong><a href="#">{{ $post->user->name }}</a></strong> on {{ $post->created_at }}</small>
                                 </h2>
 
                             </div>
                             <div class="body">
-                                {{ $post->body }}
+                                {!! $post->body !!}
                             </div>
                         </div>
                     </div>
