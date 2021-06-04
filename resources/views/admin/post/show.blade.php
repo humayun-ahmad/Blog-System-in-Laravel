@@ -70,7 +70,7 @@
 
                             </div>
                             <div class="body">
-                                <img class="img-responsive thumbnail"  width="100%;" src="{{ asset('public/storage/post/'.$post->image) }}" alt="post image">
+                                <img class="img-responsive thumbnail"  width="100%;" src="{{ asset('public/storage/post/'.$post->image) }}" alt="Post image here">
                             </div>
                         </div>
                     </div>
