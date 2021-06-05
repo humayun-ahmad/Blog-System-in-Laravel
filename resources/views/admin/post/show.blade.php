@@ -7,8 +7,10 @@
     <link href="{{asset('assets/backend/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
 
 {{--    <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.3/css/bootstrap-select.min.css">--}}
+
 {{--    <!-- Multi Select Css -->--}}
 {{--    <link href="{{ asset('assets/backend/plugins/multi-select/css/multi-select.css')  }}" rel="stylesheet">--}}
+
 @endpush
 
 
@@ -18,7 +20,7 @@
             <div class="block-header">
                 <h2>Post</h2>
             </div>
-            <!-- Vertical Layout | With Floating Label -->
+            
 
                 <div class="row clearfix">
                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
