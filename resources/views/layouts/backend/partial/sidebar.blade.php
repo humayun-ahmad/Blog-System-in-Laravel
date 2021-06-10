@@ -84,8 +84,6 @@
                         </a>
                         </li>
                         <li class="header">System</li>
-                        <li class="header">System</li>
-                        <li class="header">System</li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
