@@ -84,6 +84,12 @@
                         </a>
                         </li>
                         <li class="header">System</li>
+                        <li class="{{ Request::is('author/dashboard') ? 'active' : '' }}">
+                            <a href="{{ route('author.dashboard') }}">
+                                <i class="material-icons">dashboard</i>
+                                <span>System</span>
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -96,7 +102,7 @@
                             </form>
                         </li>
                     @endif
-                    
+
                     @if(Request::is(''))
 					@endif
                 </ul>
