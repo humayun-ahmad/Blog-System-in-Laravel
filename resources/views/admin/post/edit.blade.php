@@ -91,7 +91,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.category.index') }}">BACK</a>
+                            <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.post.index') }}">BACK</a>
                             <button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
 
                         </div>
