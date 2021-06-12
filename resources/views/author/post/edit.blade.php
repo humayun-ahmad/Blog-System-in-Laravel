@@ -20,7 +20,7 @@
         </div>
         <!-- Vertical Layout | With Floating Label -->
 
-        <form action="{{ route('admin.post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('author.post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row clearfix">
@@ -91,7 +91,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.category.index') }}">BACK</a>
+                            <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{ route('author.post.index') }}">BACK</a>
                             <button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
 
                         </div>
