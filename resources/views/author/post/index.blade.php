@@ -73,7 +73,7 @@
                                         </td>
                                         <td>
                                             @if($post->status == 1)
-                                                <span class="badge bg-blue">Approved</span>
+                                                <span class="badge bg-blue">Published</span>
                                             @else
                                                 <span class="badge bg-pink">Pending</span>
                                             @endif
