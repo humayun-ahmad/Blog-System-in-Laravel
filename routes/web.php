@@ -27,6 +27,8 @@ Route::group(['as' => 'admin.','prefix' => 'admin', 'namespace' => 'Admin', 'mid
 	Route::resource('category', 'CategoryController');
 	Route::resource('post', 'PostController');
 
+	Route::put('/post/{id}/approve', 'PostController@approval')->name('post.approve');
+
 });
 
 Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 'middleware' => ['auth', 'author']], function(){
