@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Post Show')
+@section('title', 'Post Show - author')
 
 @push('css')
     <!-- Bootstrap Select Css -->
