@@ -198,6 +198,11 @@ class PostController extends Controller
         return redirect()->route('admin.post.index');
     }
 
+    public function pending(){
+        $posts = Post::where('is_approved', false)->get();
+        return view("admin.post.pending", compact("posts"));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
