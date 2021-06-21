@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Post - Admin')
+@section('title', 'Pendin Post - Admin')
 
 @push('css')
 <!-- JQuery DataTable Css -->
