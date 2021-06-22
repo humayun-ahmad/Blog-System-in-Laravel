@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Post TABLE
+                                Pending Post Table
                                 <span class="badge bg-blue">{{ $posts->count() }}</span>
                             </h2>
 
