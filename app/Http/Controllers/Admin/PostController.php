@@ -222,4 +222,8 @@ class PostController extends Controller
 
         return redirect()->back();
     }
+
+    public function approval(Request $request,$id){
+        return $id;
+    }
 }

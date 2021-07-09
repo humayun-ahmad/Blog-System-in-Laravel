@@ -11,6 +11,7 @@
 @section('content')
 
 <div class="container-fluid">
+
             <div class="block-header">
                 <a class="btn btn-primary waves-effect" href="{{ route('admin.post.create') }}">
                     <i class="material-icons">add</i>

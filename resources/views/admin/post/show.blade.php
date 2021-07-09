@@ -17,10 +17,29 @@
 @section('content')
 
 <div class="container-fluid">
+            <a href="{{ route("admin.post.index") }} " class="btn btn-danger waves-effect">BACK</a>
+            @if($post->is_approved == false)
+                <button type="button" class="btn btn-success waves-effect pull-right" onclick="approvePost({{$post->id}})">
+                    <i class="material-icons">done</i>
+                    <span>Approve</span>
+                </button>
+            <form method="POST" action="{{ route("admin.post.approve", $post->id) }}" id="approval-form" style="display: none">
+                @csrf
+                @method("PUT")
+
+            </form>
+            @else
+                <button type="button" class="btn btn-success pull-right" disabled>
+                    <i class="material-icons">done</i>
+                    <span>Approved</span>
+                </button>
+            @endif
+            <br>
+            <br>
             <div class="block-header">
                 <h2>Post</h2>
             </div>
-            
+
 
                 <div class="row clearfix">
                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
@@ -93,7 +112,10 @@
     <!-- Select Plugin Js -->
     <script src="{{asset('assets/backend/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
 
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+
+    <script type="text/javascript">
+
         $(function () {
 
             //TinyMCE
@@ -114,6 +136,43 @@
             tinymce.suffix = ".min";
             tinyMCE.baseURL = '{{ asset('assets/backend/plugins/tinymce')  }}';
         });
+
+        function approvePost(id) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "Do you want to approve this post?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    // newly added part here
+                    event.preventDefault();
+                    document.getElementById('approval-form').submit();
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'The post is pending!',
+                        'info'
+                    )
+                }
+            })
+        }
     </script>
 
 
