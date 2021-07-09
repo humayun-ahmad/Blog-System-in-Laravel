@@ -223,7 +223,18 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    public function approval(Request $request,$id){
-        return $id;
+    public function approval(Request $request,$id)
+    {
+        $post = Post::find($id);
+
+        if($post-> is_approved == false){
+            $post->is_approved = true;
+            $post->save();
+            Toastr::success("Post successfully approved :)", "success");
+         }else{
+            Toastr::info("Post is already approved!", "info");
+        }
+
+        return redirect()->back();
     }
 }

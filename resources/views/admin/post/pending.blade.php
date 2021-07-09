@@ -81,6 +81,16 @@
                                         </td>
                                         <td>{{ $post->created_at }}</td>
                                         <td>
+                                            @if($post->is_approved == false)
+                                                <button type="button" class="btn btn-success waves-effect" onclick="approvePost({{$post->id}})">
+                                                    <i class="material-icons">done</i>
+                                                </button>
+                                                <form method="POST" action="{{ route("admin.post.approve", $post->id) }}" id="approval-form" style="display: none">
+                                                    @csrf
+                                                    @method("PUT")
+
+                                                </form>
+                                            @endif
                                             <a class="btn btn-info" href="{{ route('admin.post.show', $post->id) }}">
                                                 <i class="material-icons">visibility</i>
                                             </a>
@@ -126,7 +136,6 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
-
     <script type="text/javascript">
         function deletePost(id) {
               const swalWithBootstrapButtons = Swal.mixin({
@@ -162,6 +171,43 @@
                   'error'
                 )
               }
+            })
+        }
+
+        function approvePost(id) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "Do you want to approve this post?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Approve it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    // newly added part here
+                    event.preventDefault();
+                    document.getElementById('approval-form').submit();
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'The post is pending!',
+                        'info'
+                    )
+                }
             })
         }
     </script>
