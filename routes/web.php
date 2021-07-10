@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::post("subscriber", "SubscriberController@store")->name("subscriber.store");
+
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
