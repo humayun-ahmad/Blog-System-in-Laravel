@@ -6,13 +6,16 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Notifications\AuthorPostApproved;
 use App\Notifications\NewAuthorPost;
+use App\Notifications\NewPostNotify;
 use App\Post;
+use App\Subscriber;
 use App\Tag;
 use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
+//use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -101,8 +104,11 @@ class PostController extends Controller
         $post->categories()->attach($request->categories);
         $post->tags()->attach($request->tags);
 
-
-
+        $subscribers = Subscriber::all();
+        foreach ($subscribers as $subscriber){
+            Notification::route("mail", $subscriber->email)
+                ->notify(new NewPostNotify($post));
+        }
 
         Toastr::success('Post saved sucessfully!', 'success');
         return redirect()->route('admin.post.index');
@@ -238,6 +244,13 @@ class PostController extends Controller
             $post->is_approved = true;
             $post->save();
             $post->user->notify(new AuthorPostApproved($post));
+
+            $subscribers = Subscriber::all();
+            foreach ($subscribers as $subscriber){
+                Notification::route("mail", $subscriber->email)
+                    ->notify(new NewPostNotify($post));
+            }
+
             Toastr::success("Post successfully approved :)", "success");
          }else{
             Toastr::info("Post is already approved!", "info");

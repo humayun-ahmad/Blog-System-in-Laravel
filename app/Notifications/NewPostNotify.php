@@ -10,15 +10,15 @@ use Illuminate\Notifications\Notification;
 class NewPostNotify extends Notification
 {
     use Queueable;
-
+    public $post;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($post)
     {
-        //
+        $this->post = $post;
     }
 
     /**
@@ -41,8 +41,11 @@ class NewPostNotify extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->subject("New Post Available")
+                    ->greeting("Hello, Subscriber")
+                    ->line('This is a new post. I hope, you will like it.')
+                    ->line('Post Title: '.$this->post->title)
+                    ->action('View Post', url('/'))
                     ->line('Thank you for using our application!');
     }
 
