@@ -30,9 +30,13 @@ Route::group(['as' => 'admin.','prefix' => 'admin', 'namespace' => 'Admin', 'mid
 	Route::resource('category', 'CategoryController');
 	Route::resource('post', 'PostController');
 
+//	Post approval by admin
 	Route::put('/post/{id}/approve', 'PostController@approval')->name('post.approve');
 	Route::get('/pending/post', 'PostController@pending')->name('post.pending');
 
+//	subscriber
+    Route::get("/subscriber", "SubscriberController@index")->name("subscriber.index");
+    Route::delete("/subscriber/{subscriber}", "SubscriberController@destroy")->name("subscriber.destroy");
 });
 
 Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 'middleware' => ['auth', 'author']], function(){
