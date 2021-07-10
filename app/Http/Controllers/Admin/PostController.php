@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Notifications\NewAuthorPost;
 use App\Post;
 use App\Tag;
+use App\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -96,6 +99,9 @@ class PostController extends Controller
         $post->save();
         $post->categories()->attach($request->categories);
         $post->tags()->attach($request->tags);
+
+
+
 
         Toastr::success('Post saved sucessfully!', 'success');
         return redirect()->route('admin.post.index');
