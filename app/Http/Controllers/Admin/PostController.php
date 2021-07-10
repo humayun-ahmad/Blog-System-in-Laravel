@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Notifications\AuthorPostApproved;
 use App\Notifications\NewAuthorPost;
 use App\Post;
 use App\Tag;
@@ -236,6 +237,7 @@ class PostController extends Controller
         if($post-> is_approved == false){
             $post->is_approved = true;
             $post->save();
+            $post->user->notify(new AuthorPostApproved($post));
             Toastr::success("Post successfully approved :)", "success");
          }else{
             Toastr::info("Post is already approved!", "info");
