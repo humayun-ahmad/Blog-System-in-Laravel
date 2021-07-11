@@ -1,3 +1,4 @@
+
 <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
             <div class="user-info">
@@ -29,37 +30,39 @@
             </div>
             <!-- #User Info -->
             <!-- Menu -->
+
             <div class="menu">
                 <ul class="list">
+
                     <li class="header">MAIN NAVIGATION</li>
 
                     @if(Request::is('admin*'))
                         <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('admin.dashboard') }}">
-                            <i class="material-icons">dashboard</i>
-                            <span>Dashboard</span>
-                        </a>
+                            <a href="{{ route('admin.dashboard') }}">
+                                <i class="material-icons">dashboard</i>
+                                <span>Dashboard</span>
+                            </a>
                         </li>
 
                         <li class="{{ Request::is('admin/tag*') ? 'active' : '' }}">
-                        <a href="{{ route('admin.tag.index') }}">
-                            <i class="material-icons">label</i>
-                            <span>Tag</span>
-                        </a>
+                            <a href="{{ route('admin.tag.index') }}">
+                                <i class="material-icons">label</i>
+                                <span>Tag</span>
+                            </a>
                         </li>
 
                         <li class="{{ Request::is('admin/category*') ? 'active' : '' }}">
-                        <a href="{{ route('admin.category.index') }}">
-                            <i class="material-icons">apps</i>
-                            <span>Category</span>
-                        </a>
+                            <a href="{{ route('admin.category.index') }}">
+                                <i class="material-icons">apps</i>
+                                <span>Category</span>
+                            </a>
                         </li>
 
                         <li class="{{ Request::is('admin/post*') ? 'active' : '' }}">
-                        <a href="{{ route('admin.post.index') }}">
-                            <i class="material-icons">library_books</i>
-                            <span>Posts</span>
-                        </a>
+                            <a href="{{ route('admin.post.index') }}">
+                                <i class="material-icons">library_books</i>
+                                <span>Posts</span>
+                            </a>
                         </li>
 
                         <li class="{{ Request::is('admin/pending/post') ? 'active' : '' }}">
@@ -98,6 +101,7 @@
                             </form>
                         </li>
                         <li class="header">System</li>
+
                     @endif
 
                     @if(Request::is('author*'))
@@ -131,6 +135,7 @@
 					@endif
                 </ul>
             </div>
+
             <!-- #Menu -->
             <!-- Footer -->
             <div class="legal">

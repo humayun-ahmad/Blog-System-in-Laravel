@@ -33,7 +33,7 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{asset('assets/backend/css/themes/all-themes.css')}}" rel="stylesheet" />
-    
+
     <!-- Toastr Css -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
@@ -41,7 +41,7 @@
 
 </head>
 <body class="theme-red">
-    
+
     <!-- Page Loader -->
 <!--     <div class="page-loader-wrapper">
         <div class="loader">
@@ -79,7 +79,7 @@
     <section>
         <!-- Left Sidebar -->
         @include('layouts.backend.partial.sidebar')
-        
+
         <!-- #END# Left Sidebar -->
     </section>
 
@@ -108,7 +108,7 @@
 
     <!-- Custom Js -->
     <script src="{{asset('assets/backend/js/admin.js')}}"></script>
-    
+
 
     <!-- Demo Js -->
     <script src="{{asset('assets/backend/js/demo.js')}}"></script>
