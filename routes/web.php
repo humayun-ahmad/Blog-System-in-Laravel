@@ -22,6 +22,12 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::post('favorite/{post}/add', 'FavoriteController@add')->name('post.favorite');
+});
+
+
 Route::group(['as' => 'admin.','prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function(){
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
