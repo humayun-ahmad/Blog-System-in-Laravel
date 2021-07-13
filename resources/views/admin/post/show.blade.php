@@ -91,7 +91,7 @@
 
                             </div>
                             <div class="body">
-                                <img class="img-responsive thumbnail"  width="100%;" src="{{ asset('public/storage/post/'.$post->image) }}" alt="Post image here">
+                                <img class="img-responsive thumbnail"  width="100%;" src="{{ Storage::disk('public')->url('post/'.$post->image) }}" alt="Post image here">
                             </div>
                         </div>
                     </div>
