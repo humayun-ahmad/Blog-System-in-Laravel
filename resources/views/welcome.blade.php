@@ -71,7 +71,7 @@
                                                     closeButton : true,
                                                     progressBar : true,
                                                 })"
-                                                   class="{{ !Auth::user()->favorite_posts->where('pivot.post_id',$post->id)->count()  == 0 ? 'favorite_posts' : ''}}"
+{{--                                                   class="{{ !Auth::user()->favorite_posts->where('pivot.post_id',$post->id)->count()  == 0 ? 'favorite_posts' : ''}}"--}}
                                                 ><i class="ion-heart"></i>{{ $post->favorite_to_users->count() }}</a>
                                             @else
                                                 <a href="javascript:void(0);" onclick="document.getElementById('favorite-form-{{ $post->id }}').submit();"><i class="ion-heart"></i>{{ $post->favorite_to_users->count() }}</a>

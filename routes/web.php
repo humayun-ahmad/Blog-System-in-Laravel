@@ -44,7 +44,10 @@ Route::group(['as' => 'admin.','prefix' => 'admin', 'namespace' => 'Admin', 'mid
 	Route::put('/post/{id}/approve', 'PostController@approval')->name('post.approve');
 	Route::get('/pending/post', 'PostController@pending')->name('post.pending');
 
-//	subscriber
+//	FavoriteController
+	Route::get('/favorite', 'FavoriteController@index')->name('favorite.index');
+
+//	SubscriberController
     Route::get("/subscriber", "SubscriberController@index")->name("subscriber.index");
     Route::delete("/subscriber/{subscriber}", "SubscriberController@destroy")->name("subscriber.destroy");
 });
@@ -56,6 +59,9 @@ Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 
     Route::get('settings', 'SettingsController@index')->name('settings');
     Route::put('profile-update', "SettingsController@updateProfile")->name("profile.update");
     Route::put('password-update', 'SettingsController@updatePassword')->name('password.update');
+
+    //	FavoriteController
+    Route::get('/favorite', 'FavoriteController@index')->name('favorite.index');
 
     Route::resource('post', 'PostController');
 });
