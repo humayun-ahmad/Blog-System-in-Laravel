@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', "HomeController@index")->name('home');
 
+//SubscriberController
 Route::post("subscriber", "SubscriberController@store")->name("subscriber.store");
-
-
+//PostController
+Route::get('post/{slug}', 'PostController@details')->name('post.details');
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

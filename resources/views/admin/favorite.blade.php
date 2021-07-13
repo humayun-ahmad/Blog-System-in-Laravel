@@ -62,7 +62,7 @@
 {{--                                        <td>{{}}</td>--}}
                                         <td>{{ $post->view_count }}</td>
                                         <td>
-                                            <a class="btn btn-info" href="{{ route('admin.post.show', $post->id) }}">
+                                            <a class="btn btn-info" href="{{ route('post.details', $post->slug) }}">
                                                 <i class="material-icons">visibility</i>
                                             </a>
                                             <button class="btn btn-danger" type="button" onclick="removePost( {{ $post->id }} )">
@@ -138,43 +138,6 @@
                   'error'
                 )
               }
-            })
-        }
-
-        function approvePost(id) {
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            })
-
-            swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "Do you want to approve this post?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, Approve it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-
-                    // newly added part here
-                    event.preventDefault();
-                    document.getElementById('approval-form').submit();
-
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        'The post is pending!',
-                        'info'
-                    )
-                }
             })
         }
     </script>
