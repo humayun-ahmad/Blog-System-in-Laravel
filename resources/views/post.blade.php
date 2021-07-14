@@ -229,7 +229,7 @@
 
                                     <div class="middle-area">
                                         <a class="name" href="#"><b>{{ $comment->user->name }}</b></a>
-                                        <h6 class="date">{{ $comment->post->created_at->diffForHumans() }}</h6>
+                                        <h6 class="date">{{ $comment->created_at->diffForHumans() }}</h6>
                                     </div>
 
                                     <div class="right-area">
