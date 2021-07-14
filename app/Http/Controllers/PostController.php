@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -24,6 +25,8 @@ class PostController extends Controller
             Session::put($blogKey, 1);
         }
         $randomPosts = Post::all()->random(3);
-        return view('post', compact('post', 'randomPosts'));
+
+        $comments = Comment::latest()->get();
+        return view('post', compact('post', 'randomPosts', 'comments'));
     }
 }
