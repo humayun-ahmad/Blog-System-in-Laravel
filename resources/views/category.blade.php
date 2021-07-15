@@ -30,10 +30,9 @@
         <div class="container">
 
             <div class="row">
-
-                    @foreach($category->posts as $post)
-                        @if($post->count() > 0)
-                        <div class="col-lg-4 col-md-6">
+                        @if($posts->count() > 0)
+                        @foreach($posts as $post)
+                            <div class="col-lg-4 col-md-6">
                             <div class="card h-100">
                                 <div class="single-post post-style-1">
 
@@ -72,20 +71,21 @@
                                 </div><!-- single-post -->
                             </div><!-- card -->
                         </div><!-- col-lg-4 col-md-6 -->
+                        @endforeach
                         @else
-                        <div class="col-lg-4 col-md-6">
-                            <div class="card h-100">
-                                <div class="single-post post-style-1">
-                                    <div class="blog-info">
-                                        <h4 class="title">
-                                            <strong>Sorry, No post found :(</strong>
-                                        </h4>
-                                    </div><!-- blog-info -->
-                                </div><!-- single-post -->
-                            </div><!-- card -->
-                        </div><!-- col-lg-4 col-md-6 -->
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="card h-100">
+                                        <div class="single-post post-style-1">
+                                            <div class="blog-info">
+                                                <h4 class="title">
+                                                    <strong>Sorry, No post found :(</strong>
+                                                </h4>
+                                            </div><!-- blog-info -->
+                                        </div><!-- single-post -->
+                                    </div><!-- card -->
+                                </div><!-- col-lg-4 col-md-6 -->
                         @endif
-                    @endforeach
+
             </div><!-- row -->
 
 

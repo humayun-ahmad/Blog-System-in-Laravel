@@ -80,3 +80,8 @@ Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 
 
     Route::resource('post', 'PostController');
 });
+
+View::composer('layouts.frontend.partial.footer', function ($view){
+     $categories = App\Category::all();
+     $view->with('categories', $categories);
+});
