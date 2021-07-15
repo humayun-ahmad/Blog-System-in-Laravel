@@ -217,35 +217,37 @@
                     <h4><b>COMMENTS({{ $post->comments->count() }})</b></h4>
 
                     <div class="commnets-area ">
+                        @if($post->comments->count() == 0)
+                            <p>No comment yet. Be the first :)</p>
+                        @else
+                            @foreach($post->comments as $comment)
+                                <div class="comment">
 
-                        @foreach($comments as $comment)
-                            <div class="comment">
+                                    <div class="post-info">
 
-                                <div class="post-info">
+                                        <div class="left-area">
+                                            <a class="avatar" href="#"><img src="{{ Storage::disk('public')->url('profile/'.$comment->user->image) }}" alt="Profile Image"></a>
+                                        </div>
 
-                                    <div class="left-area">
-                                        <a class="avatar" href="#"><img src="{{ Storage::disk('public')->url('profile/'.$comment->user->image) }}" alt="Profile Image"></a>
-                                    </div>
+                                        <div class="middle-area">
+                                            <a class="name" href="#"><b>{{ $comment->user->name }}</b></a>
+                                            <h6 class="date">{{ $comment->created_at->diffForHumans() }}</h6>
+                                        </div>
 
-                                    <div class="middle-area">
-                                        <a class="name" href="#"><b>{{ $comment->user->name }}</b></a>
-                                        <h6 class="date">{{ $comment->created_at->diffForHumans() }}</h6>
-                                    </div>
+                                        <div class="right-area">
+                                            <h5 class="reply-btn" ><a href="#"><b>REPLY</b></a></h5>
+                                        </div>
 
-                                    <div class="right-area">
-                                        <h5 class="reply-btn" ><a href="#"><b>REPLY</b></a></h5>
-                                    </div>
+                                    </div><!-- post-info -->
 
-                                </div><!-- post-info -->
+                                    <p>{{ $comment->comment }}</p>
 
-                                <p>{{ $comment->comment }}</p>
-
-                            </div>
-                        @endforeach
-
+                                </div>
+                            @endforeach
+                            @endif
                     </div><!-- commnets-area -->
 
-                    <a class="more-comment-btn" href="#"><b>VIEW MORE COMMENTS</a>
+
 
                 </div><!-- col-lg-8 col-md-12 -->
 
