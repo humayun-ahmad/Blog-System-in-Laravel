@@ -82,7 +82,7 @@
 
 
                                 </li>
-                                <li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+                                <li><a href="#"><i class="ion-chatbubble"></i>{{ $post->comments->count() }}</a></li>
                                 <li><a href="#"><i class="ion-eye"></i>{{ $post->view_count }}</a></li>
                             </ul>
 
@@ -174,7 +174,7 @@
 
 
                                     </li>
-                                    <li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+                                    <li><a href="#"><i class="ion-chatbubble"></i>{{ $randomPost->comments->count() }}</a></li>
                                     <li><a href="#"><i class="ion-eye"></i>{{ $randomPost->view_count }}</a></li>
                                 </ul>
 
@@ -221,7 +221,7 @@
                             <p>No comment yet. Be the first :)</p>
                         @else
                             @foreach($post->comments as $comment)
-                                <div class="comment">
+                                <div class="comment" id="comment-section">
 
                                     <div class="post-info">
 
