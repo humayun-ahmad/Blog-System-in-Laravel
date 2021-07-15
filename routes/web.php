@@ -21,6 +21,9 @@ Route::post("subscriber", "SubscriberController@store")->name("subscriber.store"
 //PostController
 Route::get('posts', 'PostController@index')->name('post.index');
 Route::get('post/{slug}', 'PostController@details')->name('post.details');
+Route::get('post/category/{slug}', 'PostController@postByCategory')->name('category.posts');
+Route::get('post/tag/{slug}', 'PostController@postByTag')->name('tag.posts');
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
