@@ -79,6 +79,13 @@
                             </a>
                         </li>
 
+                        <li class="{{ Request::is('admin/authors') ? 'active' : '' }}">
+                            <a href="{{ route('admin.author.index') }}">
+                                <i class="material-icons">people</i>
+                                <span>Authors</span>
+                            </a>
+                        </li>
+
                         <li class="{{ Request::is('admin/comments') ? 'active' : '' }}">
                             <a href="{{ route('admin.comment.index') }}">
                                 <i class="material-icons">comment</i>
