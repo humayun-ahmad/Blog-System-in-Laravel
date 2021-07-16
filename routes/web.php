@@ -21,8 +21,11 @@ Route::post("subscriber", "SubscriberController@store")->name("subscriber.store"
 //PostController
 Route::get('posts', 'PostController@index')->name('post.index');
 Route::get('post/{slug}', 'PostController@details')->name('post.details');
+
 Route::get('post/category/{slug}', 'PostController@postByCategory')->name('category.posts');
 Route::get('post/tag/{slug}', 'PostController@postByTag')->name('tag.posts');
+
+Route::get('search', 'SearchController@search')->name('search');
 
 Auth::routes();
 
