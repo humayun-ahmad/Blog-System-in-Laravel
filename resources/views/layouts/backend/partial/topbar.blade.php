@@ -14,7 +14,7 @@
                     <li>
                         <a href="{{ route('home') }}">Home</a>
                     </li>
-                    
+
                     <!-- #END# Call Search -->
                     <!-- Notifications -->
 
