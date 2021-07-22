@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', "HomeController@index")->name('home');
 
+Route::get('profile/{username}', 'AuthorController@profile')->name('author.profile');
+
 //SubscriberController
 Route::post("subscriber", "SubscriberController@store")->name("subscriber.store");
 
