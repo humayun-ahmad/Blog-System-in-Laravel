@@ -1,13 +1,13 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Home')
+@section('title', 'Posts')
+
 
 @push('css')
-    <link href="{{asset('assets/frontend/css/home/styles.css')}}" rel="stylesheet">
-
-    <link href="{{asset('assets/frontend/css/home/responsive.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/category/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/category/styles.css')}}">
     <style>
-        .favorite_posts{
+        .favorite-posts{
             color: blue;
         }
     </style>
@@ -16,33 +16,8 @@
 
 @section('content')
 
-    <div class="main-slider">
-        <div class="swiper-container position-static" data-slide-effect="slide" data-autoheight="false"
-             data-swiper-speed="500" data-swiper-autoplay="10000" data-swiper-margin="0" data-swiper-slides-per-view="4"
-             data-swiper-breakpoints="true" data-swiper-loop="true" >
-            <div class="swiper-wrapper">
-
-                @foreach($categories as $category)
-                    <div class="swiper-slide">
-                        <a class="slider-category" href="{{ route('category.posts', $category->slug) }}">
-                            <div class="blog-image"><img src="{{ Storage::disk('public')->url('category/slider/'.$category->image) }}" alt="{{ $category->name }}"></div>
-
-                            <div class="category">
-                                <div class="display-table center-text">
-                                    <div class="display-table-cell">
-                                        <h3><b>{{ $category->name }}</b></h3>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </a>
-                    </div><!-- swiper-slide -->
-                @endforeach
-
-            </div><!-- swiper-wrapper -->
-
-        </div><!-- swiper-container -->
-
+    <div class="slider display-table center-text">
+        <h1 class="title display-table-cell"><b>All Post</b></h1>
     </div><!-- slider -->
 
     <section class="blog-area section">
@@ -57,7 +32,7 @@
 
                                 <div class="blog-image"><img src="{{ Storage::disk('public')->url('post/'.$post->image) }}" alt="Blog Image"></div>
 
-                                <a class="avatar" href="{{ route('author.profile',$post->user->username) }}"><img src="{{ Storage::disk('public')->url('profile/'.$post->user->image) }}" alt="Profile Image"></a>
+                                <a class="avatar" href="{{ route('post.details',$post->slug) }}"><img src="{{ Storage::disk('public')->url('profile/'.$post->user->image) }}" alt="Profile Image"></a>
 
                                 <div class="blog-info">
 
@@ -71,7 +46,7 @@
                                                     closeButton : true,
                                                     progressBar : true,
                                                 })"
-{{--                                                   class="{{ !Auth::user()->favorite_posts->where('pivot.post_id',$post->id)->count()  == 0 ? 'favorite_posts' : ''}}"--}}
+                                                    {{--                                                   class="{{ !Auth::user()->favorite_posts->where('pivot.post_id',$post->id)->count()  == 0 ? 'favorite_posts' : ''}}"--}}
                                                 ><i class="ion-heart"></i>{{ $post->favorite_to_users->count() }}</a>
                                             @else
                                                 <a href="javascript:void(0);" onclick="document.getElementById('favorite-form-{{ $post->id }}').submit();"><i class="ion-heart"></i>{{ $post->favorite_to_users->count() }}</a>
@@ -82,9 +57,7 @@
 
 
                                         </li>
-                                        <li>
-                                            <a href="#"><i class="ion-chatbubble"></i>{{ $post->comments->count() }}</a>
-                                        </li>
+                                        <li><a href="#"><i class="ion-chatbubble"></i>{{ $post->comments->count() }}</a></li>
                                         <li><a href="#"><i class="ion-eye"></i>{{ $post->view_count }}</a></li>
                                     </ul>
 
@@ -93,10 +66,11 @@
                         </div><!-- card -->
                     </div><!-- col-lg-4 col-md-6 -->
                 @endforeach
-
             </div><!-- row -->
 
-            <a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
+
+            {{ $posts->links() }}
+
 
         </div><!-- container -->
     </section><!-- section -->
