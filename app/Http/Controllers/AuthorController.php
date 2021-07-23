@@ -11,6 +11,6 @@ class AuthorController extends Controller
     {
         $author = User::where('username', $username)->first();
         $posts = $author->posts()->approved()->published()->get();
-
+        return view('profile', compact('author', 'posts'));
     }
 }
