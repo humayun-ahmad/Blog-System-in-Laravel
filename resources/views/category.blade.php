@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Posts By Category')
+@section('title', 'Posts By Categories')
 
 
 @push('css')
