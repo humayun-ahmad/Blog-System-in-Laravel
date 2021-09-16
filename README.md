@@ -30,3 +30,12 @@ php artisan config:cache
 ## Toastr for Laravel
 Toaster link :: https://github.com/brian2694/laravel-toastr
 
+## Material Icon
+```
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+```
+
+```
+<i class="material-icons">circle</i>
+```
+
